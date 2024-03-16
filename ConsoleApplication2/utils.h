@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 #include "header.h"
 #include <optional>
 #include <functional>
+#include <random>
 #include <type_traits>
 
 struct ProcessWindowInfo {
@@ -38,3 +39,20 @@ public:
 
 HANDLE GetProcessByName(std::wstring name, ProcessWindowInfo* pid);
 BOOL enumWindowCallback(HWND hWnd, LPARAM lparam);
+
+
+void type_string(const std::string& str);
+
+void click(int x, int y);
+
+inline int random() {
+    // 使用 Mersenne Twister 随机数引擎
+    std::random_device rd; // 从硬件生成随机种子
+    std::mt19937 gen(rd()); // 使用 Mersenne Twister 算法，以随机设备的随机数种子进行初始化
+
+    // 定义生成随机数的范围
+    std::uniform_int_distribution<> dis(1, 100); // 生成 1 到 100 之间的随机整数
+
+    // 生成随机数
+    return dis(gen);
+}
