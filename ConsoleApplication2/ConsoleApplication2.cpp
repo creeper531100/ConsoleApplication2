@@ -110,7 +110,7 @@ int main() {
     std::vector<Rect> h_found;
     CascadeClassifier cascade("haarcascade_fullbody.xml");
     Mat d_gray;
-    char c[] = { 'W', 'A', 'S', 'D' };
+    char c[] = { 'W', VK_SPACE, 'A', 'D', 'Q', VK_CONTROL };
 
     ScreenShot screen(info.hwnd);
     for (uint64_t count = 0;;) {
@@ -143,8 +143,13 @@ int main() {
 
         if(count++ > 10) {
             mouse_event(MOUSEEVENTF_MOVE, 50 * random(3), 0, 0, 0); // 移动x方向
-            char val = c[random(20) % 4];
-            CreateThread(NULL, 0, ThreadFunc2, &val, 0, NULL);
+            char val1 = c[random(20) % 6];
+            char val2 = c[random(20) % 6];
+            char val3 = c[random(20) % 6];
+
+            CreateThread(NULL, 0, ThreadFunc2, &val1, 0, NULL);
+            CreateThread(NULL, 0, ThreadFunc2, &val2, 0, NULL);
+            CreateThread(NULL, 0, ThreadFunc2, &val3, 0, NULL);
 
             count = 0;
         }
